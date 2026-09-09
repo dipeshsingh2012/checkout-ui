@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  CheckCircle2,
   ShieldCheck,
   Truck,
   CreditCard,
