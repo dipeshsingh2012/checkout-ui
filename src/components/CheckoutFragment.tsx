@@ -355,3 +355,4 @@ export const CheckoutFragment: React.FC<CheckoutFragmentProps> = ({
     </div>
   );
 };
+export default CheckoutFragment;
