@@ -15,6 +15,7 @@ import {
   ProtonCard,
   ProtonStatusBadge,
 } from '@dipesh.singh/proton/react';
+import { PriceDisplay } from '@dipesh.singh/commerce-ui';
 import { submitOrder } from '../api';
 import { CustomerInfo, OrderReceipt, ShippingAddress } from '../types';
 
@@ -259,21 +260,21 @@ export const CheckoutFragment: React.FC<CheckoutFragmentProps> = ({
               <h3 className="text-base font-bold text-slate-900">Order Total</h3>
 
               <div className="space-y-2.5 text-xs text-slate-600 mt-4">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span>Items Subtotal</span>
-                  <span className="font-semibold text-slate-800">$999.95</span>
+                  <PriceDisplay cents={99995} size="sm" />
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span>White-Glove Delivery</span>
                   <span className="text-emerald-600 font-bold">FREE</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span>Estimated Tax (8%)</span>
-                  <span className="font-semibold text-slate-800">$79.99</span>
+                  <PriceDisplay cents={7999} size="sm" />
                 </div>
                 <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline">
                   <span className="text-sm font-bold text-slate-900">Grand Total</span>
-                  <span className="text-2xl font-black text-slate-900">$1,079.94</span>
+                  <PriceDisplay cents={107994} size="lg" />
                 </div>
               </div>
 
