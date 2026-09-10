@@ -14,7 +14,7 @@ import {
   ProtonButton,
   ProtonCard,
   ProtonStatusBadge,
-} from '@dipeshsingh2012/proton/react';
+} from '@dipesh.singh/proton/react';
 import { submitOrder } from '../api';
 import { CustomerInfo, OrderReceipt, ShippingAddress } from '../types';
 
