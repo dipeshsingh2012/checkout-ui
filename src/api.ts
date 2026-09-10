@@ -25,13 +25,13 @@ export async function submitOrder(payload: {
   // Fallback simulated order receipt
   return {
     order_id: `ord_${Date.now().toString(36)}`,
-    order_number: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
+    order_number: `HJ-ORD-${Math.floor(100000 + Math.random() * 900000)}`,
     status: 'CONFIRMED',
     created_at: new Date().toISOString(),
-    estimated_delivery: 'October 15, 2026',
+    estimated_delivery: 'Today at Hiljhil Cafe Bar (Pickup) / Tomorrow (Delivery)',
     customer: payload.customer,
     shipping_address: payload.shipping_address,
-    delivery_method: payload.delivery_method || 'white_glove',
+    delivery_method: payload.delivery_method || 'cafe_pickup',
     items: [
       {
         product_id: 'prod_breville_barista_touch',
@@ -43,11 +43,21 @@ export async function submitOrder(payload: {
         dimensions_summary: '32.2 × 40.7 × 32.2 cm',
         fitment_verified: true,
       },
+      {
+        product_id: 'prod_hiljhil_guji',
+        name: 'Ethiopian Guji Single Origin (250g)',
+        brand: 'Hiljhil Roasters',
+        quantity: 1,
+        price_cents: 2200,
+        total_cents: 2200,
+        dimensions_summary: 'Whole Bean Roast',
+        fitment_verified: true,
+      },
     ],
-    subtotal_cents: 99995,
-    tax_cents: 7999,
+    subtotal_cents: 102195,
+    tax_cents: 8176,
     shipping_cents: 0,
-    grand_total_cents: 107994,
+    grand_total_cents: 110371,
     currency: 'USD',
     fitment_guarantee_active: true,
   };
