@@ -1,6 +1,6 @@
 import { CustomerInfo, OrderReceipt, ShippingAddress } from './types';
 
-const ORDER_API_URL = import.meta.env.VITE_ORDER_API_URL || 'http://localhost:8004/api/v1/orders';
+const ORDER_API_URL = import.meta.env.VITE_ORDER_API_URL || 'https://order-service-fzdcrf2fxq-uc.a.run.app/api/v1/orders';
 
 export async function submitOrder(payload: {
   cart_id: string;
@@ -9,17 +9,26 @@ export async function submitOrder(payload: {
   delivery_method?: string;
   payment_method?: string;
 }): Promise<OrderReceipt> {
-  try {
-    const res = await fetch(ORDER_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      return await res.json();
+  if (ORDER_API_URL) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      const res = await fetch(ORDER_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (err) {
+      console.warn('Could not reach order-service, using simulated order receipt');
     }
-  } catch (err) {
-    console.warn('Could not reach order-service, using simulated order receipt');
+  } else {
+    // Simulate network processing in standalone mode
+    await new Promise((resolve) => setTimeout(resolve, 600));
   }
 
   // Fallback simulated order receipt
